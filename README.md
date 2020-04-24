@@ -119,5 +119,5 @@ func (d *dispatcher) lazyLoadIfRequired() {
 }
 ```
 
-* It's also often useful to configure a dependency externally in a file. It's also simple, you can create a `Config` object, describe a builder for it, and inject it in the builder of your entity/nanodi.
+* It's also often useful to configure a dependency externally in a file. It's also simple, you can create a `Config` object, describe a builder for it, and inject it in the builder of your entity/service.
 * If you are being creative, you can combine different assemblies, for example, create a seperate global assembly for singleton services, and refer to them from inside newly generated request-scoped assemblies.
