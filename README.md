@@ -16,7 +16,7 @@ Drawbacks:
 
 ### Installation
 
-$ go get -u github.com/KonstantinGeist/nanodi
+$ go get -u github.com/konstantingeist/nanodi
 
 ### Basic usage
 
