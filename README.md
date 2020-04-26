@@ -59,7 +59,7 @@ const (
 )
 ```
 
-Builders and names should be placed in a special layer, for example I call it "build layer". It is allowed for bounded contexts to refer to names defined in build layers of other bounded contexts from inside anticorruption layers.
+The list of the builders and dependency names should be placed in a special layer, for example I call it "build layer". It is allowed for bounded contexts to refer to names defined in build layers of other bounded contexts from inside anticorruption layers.
 
 In the entry point of your application (main function, API entry point, etc.), you take builders from all known bounded contexts and combine them together:
 
@@ -99,8 +99,7 @@ func main() {
 ```
 func DispatcherBuilder() nanodi.Builder {
 	return nanodi.NewBuilder(names.EventDispatcher, func(provider nanodi.Provider) (interface{}, error) {
-		handlers := make(map[string][]Handler)
-		return (Dispatcher)(&dispatcher{handlers: handlers, provider: provider}), nil
+		return (Dispatcher)(&dispatcher{provider: provider}), nil
 	})
 }
 
@@ -120,4 +119,5 @@ func (d *dispatcher) lazyLoadIfRequired() {
 ```
 
 * It's also often useful to configure a dependency externally in a file. It's also simple, you can create a `Config` object, describe a builder for it, and inject it in the builder of your entity/service.
+* If a different implementation is required for certain scenarios (for example, testing), you can pass a config structure to your builder to dynamically decide which implementation to return, or use a Config dependency.
 * If you are being creative, you can combine different assemblies, for example, create a seperate global assembly for singleton services, and refer to them from inside newly generated request-scoped assemblies.
