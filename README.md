@@ -84,7 +84,7 @@ and then all you have to do is assemble them all together and retrieve the root 
 ```
 func main() {
 	assembly := nanodi.Assemble(builders())
-	window := nanodi.GetService(fxnames.Window).(ui.Window)
+	window := assembly.GetService(fxnames.Window).(ui.Window)
 	window.Show()
 }
 ```
